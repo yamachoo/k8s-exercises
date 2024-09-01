@@ -32,3 +32,27 @@ mage=ghcr.io/gihyodocker/debug:v0.1.0 --restart=Never -- bash
 $ kubectl delete -f pod.yaml
 $ kubectl delete -f service.yaml
 ```
+
+## kustomize exercises
+
+```
+$ cd ../kustomize/base
+
+$ kustomize create --autodetect
+
+$ kustomize build .
+
+$ kustomize build . | kubectl apply -f
+
+$ kustomize build . | kubectl delete -f
+
+---
+
+$ cd ../overlays/dev/
+
+$ kustomize create --resources ../../base
+
+$ kustomize edit add patch --path patch-deployment.yaml
+
+$ kustomize build .
+```
